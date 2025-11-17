@@ -1,0 +1,1 @@
+variable "secret_env_vars" { type = map(string) }
