@@ -2,6 +2,7 @@
 
 A full AgentOps-compliant checklist in table format.
 
+![agentops](https://github.com/user-attachments/assets/e22ec5bd-6947-4f3f-a1a8-3db4172da144)
 ---
 
 ## Cloud Infrastructure Environment
