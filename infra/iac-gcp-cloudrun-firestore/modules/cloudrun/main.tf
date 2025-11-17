@@ -11,9 +11,10 @@ resource "google_project_iam_member" "run_invoker" {
    depends_on = [google_service_account.run_sa]
 }
 
-resource "google_project_iam_member" "secret_accessor" {
+resource "google_secret_manager_secret_iam_member" "secret_accessor" {
     for_each = toset(var.secret_env_vars_keys)
     project = var.project_id
+    secret_id = each.value
     role = "roles/secretmanager.secretAccessor"
     member = "serviceAccount:${google_service_account.run_sa.email}"
 
