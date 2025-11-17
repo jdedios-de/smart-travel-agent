@@ -1,26 +1,3 @@
-resource "google_service_account" "run_sa" {
-  account_id   = "${var.service_name}-sa"
-  display_name = "${var.service_name} Cloud Run SA"
-}
-
-resource "google_project_iam_member" "run_invoker" {
-  project = var.project_id
-  role    = "roles/run.invoker"
-  member  = "serviceAccount:${google_service_account.run_sa.email}"
-
-   depends_on = [google_service_account.run_sa]
-}
-
-resource "google_secret_manager_secret_iam_member" "secret_accessor" {
-    for_each = toset(var.secret_env_vars_keys)
-    project = var.project_id
-    secret_id = each.value
-    role = "roles/secretmanager.secretAccessor"
-    member = "serviceAccount:${google_service_account.run_sa.email}"
-
-    depends_on = [google_service_account.run_sa]
-}
-
 # Cloud Run service
 resource "google_cloud_run_v2_service" "default" {
       name     = var.service_name
@@ -29,7 +6,7 @@ resource "google_cloud_run_v2_service" "default" {
       deletion_protection = false
 
       template {
-        service_account = google_service_account.run_sa.email
+        service_account = var.service_account_email
         containers {
           image = var.container_image
 

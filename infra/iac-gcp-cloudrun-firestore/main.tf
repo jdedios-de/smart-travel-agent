@@ -12,21 +12,20 @@ resource "google_project_service" "apis" {
   disable_on_destroy = false
 }
 
-# Cloud Run module
-module "cloudrun" {
-  source = "./modules/cloudrun"
-
+# Central Security module
+module "central_security" {
+  source               = "./modules/central_security"
   project_id           = var.project_id
-  region               = var.region
-  service_name         = var.service_name
-  container_image      = var.container_image
-  env_vars             = var.env_vars
   secret_env_vars      = var.secret_env_vars
   secret_env_vars_keys = keys(var.secret_env_vars)
 }
 
-# Secrets module
-module "secrets" {
-  source = "./secrets"
-  secret_env_vars = var.secret_env_vars
+# Cloud Run module
+module "cloudrun" {
+  source = "./modules/cloudrun"
+  region                = var.region
+  service_name          = var.service_name
+  container_image       = var.container_image
+  secret_env_vars_keys  = keys(var.secret_env_vars)
+  service_account_email = module.central_security.service_account_email
 }
