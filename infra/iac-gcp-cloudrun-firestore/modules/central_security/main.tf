@@ -53,3 +53,17 @@ resource "google_secret_manager_secret_iam_member" "secret_accessor" {
 
   depends_on = [google_service_account.central_sa]
 }
+
+
+# Minimal required IAM roles
+resource "google_project_iam_member" "otel_roles" {
+  for_each = toset([
+    "roles/cloudtrace.agent",
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter"
+  ])
+
+  project = var.project_id
+  role    = each.value
+  member  = "serviceAccount:${google_service_account.central_sa.email}"
+}
