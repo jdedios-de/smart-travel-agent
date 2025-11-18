@@ -13,8 +13,8 @@ A full AgentOps-compliant checklist in table format.
 | Central Cloud Security | Central Cloud Security Service Account, Workload Identity, Secret Manager  | Completed |
 | Observability          | OpenTelemetry Java → Cloud Trace, Cloud Logging                            | Completed  |
 | Billing                | GCP Budget Alerts (API + LLM cost)                                         | Under Review  |
-| Governance             | IAM roles: `travel-agent-dev`, `travel-agent-prod`                         | Planned  |
-| Code Templates         | ADK Java Maven Archetype + `SmartTravelAgent.java`                         | Planned  |
+| Governance             | IAM roles: `travel-agent-dev`, `travel-agent-prod`                         | Under Review  |
+| Code Templates         | ADK Java Maven Archetype + `SmartTravelAgent.java`                         | In Process  |
 
 ---
 
