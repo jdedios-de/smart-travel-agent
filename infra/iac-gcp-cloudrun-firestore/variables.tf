@@ -31,3 +31,8 @@ variable "secret_env_vars" {
   type        = map(string)
   default     = {}
 }
+
+variable "billing_account_id" {
+  description = "Billing Account ID"
+  type        = string
+}

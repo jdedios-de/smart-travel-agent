@@ -15,4 +15,7 @@ terraform {
 provider "google" {
   project = "smart-travel-agentic"
   region  = "europe-west3"
+
+  billing_project = "smart-travel-agentic"
+  user_project_override = true
 }

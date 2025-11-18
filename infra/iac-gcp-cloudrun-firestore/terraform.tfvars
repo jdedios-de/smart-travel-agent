@@ -8,6 +8,10 @@ env_vars = {
 }
 
 secret_env_vars = {
-  DB_PASSWORD   = "db-password"
-  API_KEY       = "api-key"
+  DB_PASSWORD                 = "db-password"
+  API_KEY                     = "api-key"
+  OTEL_EXPORTER_OTLP_ENDPOINT = "https://telemetry.googleapis.com:443"
+  OTEL_SERVICE_NAME           = "smart-travel-agent-service"
 }
+
+billing_account_id = "010B19-994A47-C712AF"
